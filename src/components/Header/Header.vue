@@ -1,13 +1,13 @@
 <template lang="pug">
 q-header(class="q-pa-sm" elevated)
-  q-toolbar(class="flex justify-between")
+  q-toolbar(class="flex position-relative")
     q-btn(dense flat round icon="menu" class="q-mx-sm")
-    div(class="text-center")
+    div(class="text-center centralizeTitle")
       div
-        | {{ currentCity }}
-      div
-        | {{ currentTime }}
-    q-btn(dense flat round icon="search" class="q-mx-sm")
+        div
+          | {{ currentCity }}
+        div
+          | {{ currentTime }}
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
 
       this.currentTime = [date.getHours(), date.getMinutes()].join(':');
     },
-    foundGeolocation(posicao) {
+    async foundGeolocation(posicao) {
       const { latitude, longitude } = posicao.coords;
 
       console.log(latitude, longitude);
@@ -41,3 +41,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.centralizeTitle {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  left: 0;
+}
+</style>
