@@ -25,10 +25,19 @@ export default {
 
       this.currentTime = [date.getHours(), date.getMinutes()].join(':');
     },
+    foundGeolocation(posicao) {
+      const { latitude, longitude } = posicao.coords;
+
+      console.log(latitude, longitude);
+    },
+    getCurrentGeolocation() {
+      navigator.geolocation.getCurrentPosition(this.foundGeolocation);
+    },
   },
 
   mounted() {
     this.getCurrentTime();
+    this.getCurrentGeolocation();
   },
 };
 </script>
