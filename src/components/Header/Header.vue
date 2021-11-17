@@ -11,33 +11,45 @@ q-header(class="q-pa-sm" elevated)
 </template>
 
 <script>
+import { api } from 'boot/axios';
+
 export default {
   data() {
     return {
       currentTime: null,
-      currentCity: 'Amsterdã',
     };
   },
 
-  methods: {
-    getCurrentTime() {
-      const date = new Date();
+  computed: {
+    currentCity: {
+      get() { return this.$store.getters['app/getCurrentCity']; },
+    },
+  },
 
-      this.currentTime = [date.getHours(), date.getMinutes()].join(':');
+  methods: {
+    startClock() {
+      setInterval(() => {
+        const date = new Date();
+
+        this.currentTime = [
+          date.getHours().toString().padStart(2, '0'),
+          date.getMinutes().toString().padStart(2, '0'),
+        ].join(':');
+      }, 1000);
     },
     async foundGeolocation(posicao) {
-      const { latitude, longitude } = posicao.coords;
+      console.log(posicao);
 
-      console.log(latitude, longitude);
-    },
-    getCurrentGeolocation() {
-      navigator.geolocation.getCurrentPosition(this.foundGeolocation);
+      const key = 'AIzaSyChrBKuU9N52057WYgkODtF01xjrXJvYoc';
+
+      const call = await api.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=123&inputtype=textquery&fields=name%2Cgeometry&key=${key}`);
+
+      console.log(call);
     },
   },
 
   mounted() {
-    this.getCurrentTime();
-    this.getCurrentGeolocation();
+    this.startClock();
   },
 };
 </script>
