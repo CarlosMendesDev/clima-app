@@ -1,12 +1,23 @@
 <template lang="pug">
-q-page(class="q-pa-md q-gutter-y-lg")
-  SearchText
+q-page(class="q-pa-md q-gutter-y-lg container")
   Card(
     :temperature="Math.floor(currentTemp.day) || 0"
     :icon="sourceImage()"
     :description="currentWeather.description"
   )
   TemperaturesTable
+  div(class="q-gutter-y-sm")
+    div(class="full-width text-center")
+      q-btn(
+        flat
+        class="text-primary"
+        label="Developed by Carlos Mendes"
+        target="_blank"
+        type="a"
+        href="https://github.com/CarlosMendesDev"
+      )
+    div(class="full-width text-center text-primary")
+      | Made with Vue JS and Quasar
 </template>
 
 <script>
@@ -75,3 +86,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.container {
+  max-width: 800px;
+}
+</style>

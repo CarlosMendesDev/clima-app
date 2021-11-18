@@ -7,7 +7,8 @@ div
     row-key="name"
     hide-header
     hide-bottom
-    class="text-primary"
+    class="text-white bg-primary"
+    :rows-per-page-options="[7]"
   )
     template(
       #body-cell="{ row, col }"
@@ -21,10 +22,9 @@ div
           class="text-subtitle2"
         )
           | {{ row[col.name] }}
-        q-icon(
+        q-img(
           v-else
-          :name="row[col.name]"
-          size="1.30rem"
+          :src="sourceImage(row[col.name])"
         )
 </template>
 
@@ -51,40 +51,26 @@ export default {
         },
         {
           name: 'minTemperature',
-          align: 'left',
+          align: 'center',
           bindings: {
             class: 'text-blue',
           },
           field: 'minTemperature',
         },
       ],
-      rows: [
-        {
-          weekDays: 'Quinta',
-          iconTemperature: 'fas fa-cloud-sun',
-          maxTemperature: '26°',
-          minTemperature: '16°',
-        },
-        {
-          weekDays: 'Sexta',
-          iconTemperature: 'fas fa-cloud-sun',
-          maxTemperature: '26°',
-          minTemperature: '16°',
-        },
-        {
-          weekDays: 'Sábado',
-          iconTemperature: 'fas fa-cloud-sun',
-          maxTemperature: '26°',
-          minTemperature: '16°',
-        },
-        {
-          weekDays: 'Domingo',
-          iconTemperature: 'fas fa-cloud-sun',
-          maxTemperature: '26°',
-          minTemperature: '16°',
-        },
-      ],
     };
+  },
+
+  computed: {
+    rows: {
+      get() { return JSON.parse(JSON.stringify(this.$store.getters['app/getRows'])); },
+    },
+  },
+
+  methods: {
+    sourceImage(icon) {
+      return `http://openweathermap.org/img/wn/${icon}@4x.png`;
+    },
   },
 };
 </script>

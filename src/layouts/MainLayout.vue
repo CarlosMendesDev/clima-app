@@ -1,5 +1,5 @@
 <template lang="pug">
-q-layout(view="lHh Lpr lFf")
+q-layout(view="lHh Lpr lFf" class="center")
   Header
   q-page-container
     router-view
@@ -24,3 +24,9 @@ export default {
 };
 
 </script>
+
+<style lang="scss">
+.center {
+  text-align: -webkit-center;
+}
+</style>

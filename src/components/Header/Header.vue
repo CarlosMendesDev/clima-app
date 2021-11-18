@@ -1,7 +1,6 @@
 <template lang="pug">
 q-header(class="q-pa-sm" elevated)
   q-toolbar(class="flex position-relative")
-    q-btn(dense flat round icon="menu" class="q-mx-sm")
     div(class="text-center centralizeTitle")
       div
         div

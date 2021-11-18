@@ -3,7 +3,7 @@ q-card(class="bg-primary")
   q-card-section(horizontal class="row justify-center")
     q-card-section(class="col-auto q-px-md")
       q-card-section(class="row flex-center q-px-none")
-        div(class="text-white text-h3 text-bold col-5")
+        div(class="text-white text-h4 text-bold col-5")
           | {{ temperature }}°
         div(class="col-5")
           q-img(:src="icon")

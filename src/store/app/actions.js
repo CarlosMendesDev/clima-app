@@ -5,4 +5,5 @@ export async function getCurrentGeolocation({ commit }, { latitude, longitude })
 
   commit('setCurrentCity', { currentCity: data.city });
   commit('setPrevision', { prevision: data.prevision });
+  commit('setRows', { rows: data.table });
 }
